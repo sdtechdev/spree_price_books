@@ -19,6 +19,7 @@ Spree::Price.class_eval do
   scope :by_store, -> (store_id) { joins(:store_price_books).where(spree_store_price_books: { store_id: store_id }) }
   scope :list, -> { prioritized.where(spree_price_books: { discount: false }) }
   scope :prioritized, -> { includes(:price_book).order('spree_price_books.priority DESC, spree_prices.amount ASC') }
+  scope :tiered, ->(order_total) { prioritized.where('spree_price_books.priority <= ?', order_total).first }
 
   private
 

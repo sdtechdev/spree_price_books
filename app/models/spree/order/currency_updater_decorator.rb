@@ -1,6 +1,4 @@
-module Spree
-  class Order < Spree::Base
-    CurrencyUpdater.class_eval do
+Spree::Order::CurrencyUpdater.class_eval do
 
       # Returns the price object from given item
       def list_price_from_line_item(line_item)
@@ -27,7 +25,5 @@ module Spree
           raise RuntimeError, "no #{currency} price found for #{line_item.product.name} (#{line_item.variant.sku})"
         end
       end
-
-    end
-  end
+      
 end
