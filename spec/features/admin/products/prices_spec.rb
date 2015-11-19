@@ -23,29 +23,29 @@ describe "Prices" do
 
     it "shows the price book drop-down in the correct order" do
       within(:css, '#price_book_id') do
-        find('option:nth-child(1)').should have_text "Default (USD)"
-        find('option:nth-child(2)').should have_text "Explicit (USD)"
-        find('option:nth-child(3)').should have_text "Factored (USD)"
+        expect(find('option:nth-child(1)')).to have_text "Default (USD)"
+        expect(find('option:nth-child(2)')).to have_text "Explicit (USD)"
+        expect(find('option:nth-child(3)')).to have_text "Factored (USD)"
       end
     end
 
     it "has the default price book selected by default" do
-      page.has_select?('price_book_id', :selected => 'Default (USD)').should == true
+      expect(page.has_select?('price_book_id', :selected => 'Default (USD)')).to eq(true)
     end
 
     it "loads a new price book when one is selected from the drop-down" do
       select('Explicit (USD)', :from => 'price_book_id')
-      page.has_select?('price_book_id', :selected => 'Explicit (USD)').should == true
+      expect(page.has_select?('price_book_id', :selected => 'Explicit (USD)')).to eq(true)
     end
 
     it "shows the master variant as the only variant in the prices table" do
-      page.all('table.index tbody tr').count.should == 1
-      find('table.index tbody tr td:nth-child(1)').should have_text "Master"
+      expect(page.all('table.index tbody tr').count).to eq(1)
+      expect(find('table.index tbody tr td:nth-child(1)')).to have_text "Master"
     end
 
     it "navigates to the product detail page when canceling" do
       click_link "Cancel"
-      current_path.should == spree.edit_admin_product_path(product)
+      expect(current_path).to eq(spree.edit_admin_product_path(product))
     end
 
     context "#using an explicit price book" do
@@ -55,7 +55,7 @@ describe "Prices" do
       end
 
       it "lists the prices in text fields", js: true do
-        page.all('table.index tbody tr td input[type=text]').count.should == product.variants_including_master.size
+        expect(page.all('table.index tbody tr td input[type=text]').count).to eq(product.variants_including_master.size)
       end
 
       it "allows the prices to be modified", js: true do
@@ -65,7 +65,7 @@ describe "Prices" do
         click_button 'Update'
 
         price = explicit_price_book.prices.find_by_variant_id(product.master)
-        price.amount.should == 123
+        expect(price.amount).to eq(123)
       end
     end
 
@@ -76,8 +76,8 @@ describe "Prices" do
       end
 
       it "lists the prices as read-only", js: true do
-        page.all('table.index tbody tr td input[type=text]').count.should == 0
-        find('table.index tbody tr td:nth-child(3)').should have_text(factored_price_book.prices.find_by_variant_id(product.master).amount)
+        expect(page.all('table.index tbody tr td input[type=text]').count).to eq(0)
+        expect(find('table.index tbody tr td:nth-child(3)')).to have_text(factored_price_book.prices.find_by_variant_id(product.master).amount)
       end
     end
 
@@ -92,12 +92,12 @@ describe "Prices" do
       end
 
       it "lists each variant in the prices tabale" do
-        page.all('table.index tbody tr').count.should == product.variants_including_master.size
+        expect(page.all('table.index tbody tr').count).to eq(product.variants_including_master.size)
       end
 
       it "lists the master variant first in the prices table" do
         within('table.index tbody tr') do
-          find('td:nth-child(1)').should have_text "Master"
+          expect(find('td:nth-child(1)')).to have_text "Master"
         end
       end
 

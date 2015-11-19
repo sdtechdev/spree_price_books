@@ -10,32 +10,32 @@ describe Spree::OrderContents do
     context 'given quantity is not explicitly provided' do
       it 'should add one line item' do
         line_item = subject.add(variant, nil, 'USD')
-        line_item.quantity.should == 1
-        order.line_items.size.should == 1
+        expect(line_item.quantity).to eq(1)
+        expect(order.line_items.size).to eq(1)
       end
     end
 
     it 'should add line item if one does not exist' do
       line_item = subject.add(variant, 1, 'USD')
-      line_item.quantity.should == 1
-      order.line_items.size.should == 1
+      expect(line_item.quantity).to eq(1)
+      expect(order.line_items.size).to eq(1)
     end
 
     it 'should update line item if one exists' do
       subject.add(variant, 1, 'USD')
       line_item = subject.add(variant, 1, 'USD')
-      line_item.quantity.should == 2
-      order.line_items.size.should == 1
+      expect(line_item.quantity).to eq(2)
+      expect(order.line_items.size).to eq(1)
     end
 
     it "should update order totals" do
-      order.item_total.to_f.should == 0.00
-      order.total.to_f.should == 0.00
+      expect(order.item_total.to_f).to eq(0.00)
+      expect(order.total.to_f).to eq(0.00)
 
       subject.add(variant, 1, 'USD')
 
-      order.item_total.to_f.should == 19.99
-      order.total.to_f.should == 19.99
+      expect(order.item_total.to_f).to eq(19.99)
+      expect(order.total.to_f).to eq(19.99)
     end
 
     context "running promotions" do

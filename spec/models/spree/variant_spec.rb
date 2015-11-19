@@ -63,7 +63,7 @@ describe Spree::Variant do
     end
 
     it 'should find price ordered by highest priority price book then lowest amount' do
-      variant.price_in('USD').amount.to_f.should eql(5.0)
+      expect(variant.price_in('USD').amount.to_f).to eql(5.0)
     end
 
   end

@@ -31,7 +31,7 @@ describe "Price Books", js: true do
 
   context 'when only list books active' do
     before do
-      ApplicationController.any_instance.stub(:current_store) { store.reload }
+      allow_any_instance_of(ApplicationController).to receive(:current_store) { store.reload }
     end
 
     it 'displays proper price when currency changed' do
@@ -53,7 +53,7 @@ describe "Price Books", js: true do
     before do
       price_book_3 = create(:factored_price_book, currency: 'USD', discount: true, parent: price_book_2, price_adjustment_factor: 0.5)
       store.price_books << price_book_3
-      ApplicationController.any_instance.stub(:current_store) { store.reload }
+      allow_any_instance_of(ApplicationController).to receive(:current_store) { store.reload }
     end
 
     it 'should display list and sale price' do
