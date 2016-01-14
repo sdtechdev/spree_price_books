@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'google_currency'
-  s.add_dependency 'spree_core', '~> 2.3.0'
+  s.add_dependency 'solidus_core', '>= 1.0.0', '< 2'
   s.add_dependency 'validates_timeliness', '~> 3.0'
 
   s.add_development_dependency 'capybara', '~> 2.1'
