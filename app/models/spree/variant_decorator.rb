@@ -7,12 +7,12 @@ Spree::Variant.class_eval do
     class_name: 'Spree::Price',
     dependent: :destroy
 
-  has_many :price_books, -> { active.order('spree_prices.amount ASC, spree_price_books.priority DESC') }, through: :prices
-
   has_many :prices,
     class_name: 'Spree::Price',
     dependent: :destroy,
     inverse_of: :variant
+
+  has_many :price_books, -> { active.order('spree_prices.amount ASC, spree_price_books.priority DESC') }, through: :prices
 
   ## Class Methods
 
