@@ -1,22 +1,17 @@
-Spree::Variant.class_eval do
+module Spree::SpreePriceBooks::VariantDecorator
+  def self.prepended(base)
+    base.has_one :default_price,
+      -> { where currency: Spree::Config[:currency], price_book_id: Spree::PriceBook.default.id },
+      class_name: 'Spree::Price',
+      dependent: :destroy
 
-  ## Associations
+    base.has_many :prices,
+      class_name: 'Spree::Price',
+      dependent: :destroy,
+      inverse_of: :variant
 
-  has_one :default_price,
-    -> { where currency: Spree::Config[:currency], price_book_id: Spree::PriceBook.default.id },
-    class_name: 'Spree::Price',
-    dependent: :destroy
-
-  has_many :prices,
-    class_name: 'Spree::Price',
-    dependent: :destroy,
-    inverse_of: :variant
-
-  has_many :price_books, -> { active.order('spree_prices.amount ASC, spree_price_books.priority DESC') }, through: :prices
-
-  ## Class Methods
-
-  ## Instance Methods
+    base.has_many :price_books, -> { active.order('spree_prices.amount ASC, spree_price_books.priority DESC') }, through: :prices
+  end
 
   def display_list_price(currency = Spree::Config[:currency], store_id = Spree::Store.default.id, role_ids = nil)
     lp = list_price_in(currency, store_id)
@@ -39,5 +34,6 @@ Spree::Variant.class_eval do
       prices.by_currency(currency).by_role(role_ids).first
     end
   end
-
 end
+
+Spree::Variant.prepend Spree::SpreePriceBooks::VariantDecorator
