@@ -11,7 +11,7 @@
 
     <div class="omega eight columns">
       <div class="field">
-        <%= f.label :currency, Spree.t(:choose_currency) %> <span class="required">*</span><br />
+        <%= f.label :currency, t('spree.choose_currency') %> <span class="required">*</span><br />
         <%= f.select :currency, pb_currency_options(f.object.currency), class: 'fullwidth select2' %>
         <%= f.error_message_on :currency %>
       </div>
@@ -55,7 +55,7 @@
   <div class="row">
     <div class="alpha four columns">
       <%= f.field_container :parent do %>
-        <%= f.label :parent, Spree.t(:parent) %> <span class="required">*</span><br />
+        <%= f.label :parent, t('spree.parent') %> <span class="required">*</span><br />
         <%= f.collection_select(:parent_id, Spree::PriceBook.all - [f.object], :id, :name,
               include_blank: true, selected: Spree::PriceBook.default.id, class: 'fullwidth select2') %>
         <%= f.error_message_on :parent %>

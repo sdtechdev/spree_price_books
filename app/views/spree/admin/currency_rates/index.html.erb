@@ -1,13 +1,13 @@
 <%= render 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= Spree.t(:currency_rates) %>
+  <%= t('spree.currency_rates') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <% if can? :create, Spree::CurrencyRate %>
     <li>
-      <%= button_link_to Spree.t(:new_currency_rate), new_object_url, icon: 'plus' %>
+      <%= button_link_to t('spree.new_currency_rate'), new_object_url, icon: 'plus' %>
     </li>
     <% end %>
 <% end %>
@@ -23,10 +23,10 @@
     </colgroup>
     <thead>
       <tr data-hook="rate_header">
-        <th><%= Spree.t(:base_currency) %></th>
-        <th><%= Spree.t(:exchange_rate) %></th>
-        <th><%= Spree.t(:currency) %></th>
-        <th><%= Spree.t(:default) %></th>
+        <th><%= t('spree.base_currency') %></th>
+        <th><%= t('spree.exchange_rate') %></th>
+        <th><%= t('spree.currency') %></th>
+        <th><%= t('spree.default') %></th>
         <th class="actions"></th>
       </tr>
     </thead>
@@ -34,7 +34,7 @@
       <% @currency_rates.each do |currency_rate|%>
       <tr id="<%= spree_dom_id currency_rate %>" data-hook="rate_row" class="<%= cycle('odd', 'even')%>">
         <td class="align-center"><%= currency_rate.base_currency %></td>
-        <td class="align-center"><%= currency_rate.exchange_rate || Spree.t(:not_available) %></td>
+        <td class="align-center"><%= currency_rate.exchange_rate || t('spree.not_available') %></td>
         <td class="align-center"><%= currency_rate.currency %></td>
         <td class="align-center"><%= currency_rate.default %></td>
         <td class="actions">
@@ -47,7 +47,7 @@
   </table>
 <% else %>
   <div class="alpha twelve columns no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/currency_rate')) %>,
-    <%= link_to Spree.t(:add_one), spree.new_admin_currency_rate_path %>!
+    <%= t('spree.no_resource_found', resource: I18n.t(:other, scope: 'activerecord.models.spree/currency_rate')) %>,
+    <%= link_to t('spree.add_one'), spree.new_admin_currency_rate_path %>!
   </div>
 <% end %>
