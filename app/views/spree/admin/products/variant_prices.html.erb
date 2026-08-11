@@ -20,9 +20,9 @@
     </colgroup>
     <thead data-hook="variants_header">
       <tr>
-        <th><%= Spree.t(:variant) %></th>
-        <th><%= Spree.t(:default_price) %></th>
-        <th><%= "#{Spree.t(:price)} (#{@current_price_book.currency})" %></th>
+        <th><%= t('spree.variant') %></th>
+        <th><%= t('spree.default_price') %></th>
+        <th><%= "#{t('spree.price')} (#{@current_price_book.currency})" %></th>
       </tr>
     </thead>
     <tbody>
@@ -48,9 +48,9 @@
   </table>
 
   <div class="form-buttons filter-actions actions" data-hook="buttons">
-    <%= button Spree.t('actions.update'), 'icon-refresh' %>
-    <span class="or"><%= Spree.t(:or) %></span>
-    <%= button_link_to Spree.t('actions.cancel'), spree.admin_product_url(@product), :icon => 'icon-remove' %>
+    <%= button t('spree.actions.update'), 'icon-refresh' %>
+    <span class="or"><%= t('spree.or') %></span>
+    <%= button_link_to t('spree.actions.cancel'), spree.admin_product_url(@product), :icon => 'icon-remove' %>
   </div>
   
   <%# this is horrible Jeff S.  Why didn't you just keep the product in the route? %>

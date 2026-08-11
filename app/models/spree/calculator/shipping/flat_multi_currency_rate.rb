@@ -7,7 +7,7 @@ module Spree
       preference :base_currency, :string, default: -> { Spree::Config[:currency] }
 
       def self.description
-        Spree.t(:shipping_flat_multi_currency_rate_per_order)
+        I18n.t('spree.shipping_flat_multi_currency_rate_per_order')
       end
 
       def compute_package(package)
