@@ -4,7 +4,7 @@
 
 <% content_for :page_actions do %>
   <li id="new_pb_link">
-    <%= button_link_to t('spree.new_price_book'), new_admin_price_book_url, { :remote => true, :icon => 'icon-plus', :id => 'new_price_book_link' } %>
+    <%= link_to t('spree.new_price_book'), new_admin_price_book_url, remote: true, id: 'new_price_book_link', class: 'btn btn-primary' %>
   </li>
 <% end %>
 

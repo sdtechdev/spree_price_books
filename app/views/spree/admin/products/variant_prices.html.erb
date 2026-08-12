@@ -48,9 +48,9 @@
   </table>
 
   <div class="form-buttons filter-actions actions" data-hook="buttons">
-    <%= button t('spree.actions.update'), 'icon-refresh' %>
+    <%= button_tag t('spree.actions.update'), class: 'btn btn-primary' %>
     <span class="or"><%= t('spree.or') %></span>
-    <%= button_link_to t('spree.actions.cancel'), spree.admin_product_url(@product), :icon => 'icon-remove' %>
+    <%= link_to t('spree.actions.cancel'), spree.admin_product_url(@product), class: 'button' %>
   </div>
   
   <%# this is horrible Jeff S.  Why didn't you just keep the product in the route? %>

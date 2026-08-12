@@ -6,7 +6,7 @@
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t('spree.back_to_price_books_list'), spree.admin_price_books_path, :icon => 'icon-arrow-left' %>
+    <%= link_to t('spree.back_to_price_books_list'), spree.admin_price_books_path, class: 'btn btn-primary' %>
   </li>
 <% end %>
 

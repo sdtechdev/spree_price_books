@@ -5,15 +5,15 @@
 
 <% content_for :page_actions do %>
   <li id="edit_pb_link">
-    <%= button_link_to t('spree.edit_price_book'),
+    <%= link_to t('spree.edit_price_book'),
       spree.edit_admin_price_book_url,
-      { :icon => 'icon-edit', :id => 'edit_price_book_link' } %>
+      id: 'edit_price_book_link', class: 'btn btn-primary' %>
   </li>
   <% if @price_book.explicit? %>
   <li id="add_products_pb_link">
-    <%= button_link_to t('spree.add_products'),
+    <%= link_to t('spree.add_products'),
       spree.add_products_admin_price_book_path(@price_book),
-      { :icon => 'icon-plus', :id => 'add_products_price_book_link' } %>
+      id: 'add_products_price_book_link', class: 'btn btn-primary' %>
   </li>
   <% end %>
 <% end %>
